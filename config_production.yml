@@ -1,0 +1,71 @@
+_format_version: '1.1'
+services:
+  # not autorization
+  - url: http://103.82.92.34:8080
+    routes:
+      # login
+      - name: login
+        paths: ['/auth/login']
+        strip_path: false
+        methods: ['POST']
+        protocols: ['http', 'https']
+      # register
+      - name: register
+        paths: ['/auth/register']
+        strip_path: false
+        methods: ['POST']
+        protocols: ['http', 'https']
+      # refresh-token
+      - name: refresh-token
+        paths: ['/auth/refresh-token']
+        strip_path: false
+        methods: ['POST']
+        protocols: ['http', 'https']
+      # forgot-password
+      - name: forgot-password
+        paths: ['/auth/forgot-password']
+        strip_path: false
+        methods: ['POST']
+        protocols: ['http', 'https']
+      # change-forgot-password
+      - name: change-forgot-password
+        paths: ['/auth/change-forgot-password']
+        strip_path: false
+        methods: ['PUT']
+        protocols: ['http', 'https']
+    plugins:
+      - name: key-checker
+        config:
+          apikey: secretkeyjasanyaauth
+  # with autorization
+  - url: http://103.82.92.34:8080
+    routes:
+      # update-profile
+      - name: update-profile
+        paths: ['/auth/update-profile']
+        strip_path: false
+        methods: ['PUT']
+        protocols: ['http', 'https']
+      # get-otp
+      - name: get-otp
+        paths: ['/auth/get-otp']
+        strip_path: false
+        methods: ['POST']
+        protocols: ['http', 'https']
+      # activasi-account
+      - name: activasi-account
+        paths: ['/auth/activasi-account']
+        strip_path: false
+        methods: ['PUT']
+        protocols: ['http', 'https']
+    plugins:
+      - name: key-checker
+        config:
+          apikey: secretkeyjasanyaauth
+      - name: custom-auth
+        config:
+          validation_endpoint: http://103.82.92.34:8080/auth/validate-token
+          token_header: Authorization
+          appid_header: App-Id
+          userid_header: User-Id
+          activasi_account: Activasi-Account

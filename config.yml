@@ -1,7 +1,7 @@
 _format_version: '1.1'
 services:
   # not autorization
-  - url: http://10.5.50.129:8080
+  - url: http://localhost:8080
     routes:
       # login
       - name: login
@@ -38,7 +38,7 @@ services:
         config:
           apikey: secretkeyjasanyaauth
   # with autorization
-  - url: http://10.5.50.129:8080
+  - url: http://localhost:8080
     routes:
       # update-profile
       - name: update-profile
@@ -64,7 +64,7 @@ services:
           apikey: secretkeyjasanyaauth
       - name: custom-auth
         config:
-          validation_endpoint: http://10.5.50.129:8080/auth/validate-token
+          validation_endpoint: http://localhost:8080/auth/validate-token
           token_header: Authorization
           appid_header: App-Id
           userid_header: User-Id

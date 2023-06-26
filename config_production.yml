@@ -69,3 +69,10 @@ services:
           appid_header: App-Id
           userid_header: User-Id
           activasi_account: Activasi-Account
+  - url: http://103.82.92.34:8080
+    routes:
+      # image
+      - name: image
+        paths: ['/public/user-images/']
+        methods: ['GET']
+        protocols: ['http', 'https']

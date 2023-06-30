@@ -40,12 +40,6 @@ services:
   # with autorization
   - url: http://103.82.92.34:8080
     routes:
-      # update-profile
-      - name: update-profile
-        paths: ['/auth/update-profile']
-        strip_path: false
-        methods: ['PUT']
-        protocols: ['http', 'https']
       # get-otp
       - name: get-otp
         paths: ['/auth/get-otp']
@@ -55,6 +49,11 @@ services:
       # activasi-account
       - name: activasi-account
         paths: ['/auth/activasi-account']
+        strip_path: false
+        methods: ['PUT']
+        protocols: ['http', 'https']
+      - name: change-password
+        paths: ['/auth/change-password']
         strip_path: false
         methods: ['PUT']
         protocols: ['http', 'https']
@@ -69,10 +68,3 @@ services:
           appid_header: App-Id
           userid_header: User-Id
           activasi_account: Activasi-Account
-  - url: http://103.82.92.34:8080
-    routes:
-      # image
-      - name: image
-        paths: ['/public/user-images/']
-        methods: ['GET']
-        protocols: ['http', 'https']

@@ -1,4 +1,4 @@
-module api-gateway-kong
+module github.com/DueIt-Jasanya-Aturuang/DueIt-Kong-Api-Gateway
 
 go 1.20
 

@@ -62,7 +62,7 @@ services:
       - name: logout
         paths: ['/auth/logout']
         strip_path: false
-        methods: ['PUT']
+        methods: ['POST']
         protocols: ['http', 'https']
     plugins:
       - name: key-checker

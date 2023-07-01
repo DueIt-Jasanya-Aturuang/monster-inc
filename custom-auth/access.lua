@@ -73,7 +73,7 @@ function _Access.run(conf)
 	-- _Access.error_response("Authentication refused the resquest", ngx.HTTP_UNAUTHORIZED)
     -- end
 
-    ngx.req.clear_header(_Access.conf.token_header)
+    -- ngx.req.clear_header(_Access.conf.token_header)
 end
 
 return _Access

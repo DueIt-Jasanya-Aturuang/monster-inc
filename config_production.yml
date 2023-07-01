@@ -52,8 +52,15 @@ services:
         strip_path: false
         methods: ['PUT']
         protocols: ['http', 'https']
+      # change password
       - name: change-password
         paths: ['/auth/change-password']
+        strip_path: false
+        methods: ['PUT']
+        protocols: ['http', 'https']
+      # logout
+      - name: logout
+        paths: ['/auth/logout']
         strip_path: false
         methods: ['PUT']
         protocols: ['http', 'https']

@@ -1,0 +1,30 @@
+name: Go-apigateway
+
+on:
+  push:
+    branches: ['main']
+  pull_request:
+    branches: ['main']
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: setup Go-apigateway
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.20
+
+      - name: login to docker registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: SyaibanAhmadRamadhan
+          password: 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
+
+      - name: build and push
+        run: |
+          docker build . --tag ghcr.io/dueit-jasanya-aturuang/dueit-kong-apigateway:1.0
+          docker push ghcr.io/dueit-jasanya-aturuang/dueit-kong-apigateway:1.0

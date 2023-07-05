@@ -3,78 +3,37 @@ services:
   # not autorization
   - url: http://103.82.92.34:8080
     routes:
-      # login
-      - name: login
-        paths: ['/auth/login']
+      - name: auth-service
+        paths:
+          [
+            '/auth/login',
+            '/auth/register',
+            '/auth/refresh-token',
+            '/auth/forgot-password',
+            '/auth/change-forgot-password',
+          ]
         strip_path: false
-        methods: ['POST']
-        protocols: ['http', 'https']
-      # register
-      - name: register
-        paths: ['/auth/register']
-        strip_path: false
-        methods: ['POST']
-        protocols: ['http', 'https']
-      # refresh-token
-      - name: refresh-token
-        paths: ['/auth/refresh-token']
-        strip_path: false
-        methods: ['POST']
-        protocols: ['http', 'https']
-      # forgot-password
-      - name: forgot-password
-        paths: ['/auth/forgot-password']
-        strip_path: false
-        methods: ['POST']
-        protocols: ['http', 'https']
-      # change-forgot-password
-      - name: change-forgot-password
-        paths: ['/auth/change-forgot-password']
-        strip_path: false
-        methods: ['PUT']
+        methods: ['POST', 'POST', 'POST', 'POST', 'PUT']
         protocols: ['http', 'https']
     plugins:
       - name: key-checker
         config:
           apikey: secretkeyjasanyaauth
+
   # with autorization
   - url: http://103.82.92.34:8080
     routes:
       # get-otp
-      - name: get-otp
-        paths: ['/auth/get-otp']
+      - name: auth-service
+        paths:
+          [
+            '/auth/get-otp',
+            '/auth/logout',
+            '/auth/activasi-account',
+            '/auth/change-password',
+          ]
+        methods: ['POST', 'POST', 'PUT', 'PUT']
         strip_path: false
-        methods: ['POST']
-        protocols: ['http', 'https']
-      # activasi-account
-      - name: activasi-account
-        paths: ['/auth/activasi-account']
-        strip_path: false
-        methods: ['PUT']
-        protocols: ['http', 'https']
-      # change password
-      - name: change-password
-        paths: ['/auth/change-password']
-        strip_path: false
-        methods: ['PUT']
-        protocols: ['http', 'https']
-      # get profile
-      - name: get profile
-        paths: ['/profile/get-profile']
-        strip_path: false
-        methods: ['GET']
-        protocols: ['http', 'https']
-      # get profile
-      - name: update account
-        paths: ['/profile/update-account']
-        strip_path: false
-        methods: ['PUT']
-        protocols: ['http', 'https']
-      # logout
-      - name: logout
-        paths: ['/auth/logout']
-        strip_path: false
-        methods: ['POST']
         protocols: ['http', 'https']
     plugins:
       - name: key-checker
@@ -87,3 +46,30 @@ services:
           appid_header: App-Id
           userid_header: User-Id
           activasi_account: Activasi-Account
+
+  - url: http://103.82.92.34:9090
+    routes:
+      - name: account-service
+        paths: ['/profile/get-profile', '/profile/update-account']
+        strip_path: false
+        methods: ['GET', 'PUT']
+        protocols: ['http', 'https']
+    plugins:
+      - name: key-checker
+        config:
+          apikey: secretkeyjasanyaauth
+      - name: custom-auth
+        config:
+          validation_endpoint: http://103.82.92.34:8080/auth/validate-token
+          token_header: Authorization
+          appid_header: App-Id
+          userid_header: User-Id
+          activasi_account: Activasi-Account
+
+  - url: http://103.82.92.34:9000
+    routes:
+      - name: minio
+        paths: ['/files/user-images/public/.+']
+        strip_path: false
+        methods: ['GET']
+        protocols: ['http', 'https']

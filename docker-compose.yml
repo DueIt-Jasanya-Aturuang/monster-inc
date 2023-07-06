@@ -2,9 +2,7 @@ version: '3'
 services:
   kong:
     container_name: kong-dueit
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: 1acbc22b587b
     ports:
       - '8000:8000'
     environment:

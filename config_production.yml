@@ -59,18 +59,6 @@ services:
         strip_path: false
         methods: ['PUT']
         protocols: ['http', 'https']
-      # get profile
-      - name: get profile
-        paths: ['/profile/get-profile']
-        strip_path: false
-        methods: ['GET']
-        protocols: ['http', 'https']
-      # get profile
-      - name: update account
-        paths: ['/profile/update-account']
-        strip_path: false
-        methods: ['PUT']
-        protocols: ['http', 'https']
       # logout
       - name: logout
         paths: ['/auth/logout']

@@ -38,7 +38,7 @@ services:
         protocols: ['http', 'https']
       # change-forgot-password
       - name: change-forgot-password
-        paths: ['/auth/change-forgot-password']
+        paths: ['/auth/forgot-password']
         strip_path: false
         methods: ['PUT']
         protocols: ['http', 'https']
@@ -52,7 +52,7 @@ services:
     routes:
       # get-otp
       - name: get-otp
-        paths: ['/auth/get-otp']
+        paths: ['/auth/activasi-account']
         strip_path: false
         methods: ['POST']
         protocols: ['http', 'https']

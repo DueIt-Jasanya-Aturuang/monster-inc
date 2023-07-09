@@ -4,6 +4,12 @@ services:
   - url: http://103.82.92.34:8080
     routes:
       # login
+      - name: swagger
+        paths: ['/auth/swagger/.+']
+        strip_path: false
+        methods: ['GET']
+        protocols: ['http', 'https']
+      # login
       - name: login
         paths: ['/auth/login']
         strip_path: false

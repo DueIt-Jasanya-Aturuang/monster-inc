@@ -1,14 +1,17 @@
 _format_version: '1.1'
 services:
-  # not autorization
+  # swagger
   - url: http://103.82.92.34:8080
     routes:
-      # login
+      # auth
       - name: swagger
         paths: ['/auth/swagger/.+']
         strip_path: false
         methods: ['GET']
         protocols: ['http', 'https']
+  # not autorization
+  - url: http://103.82.92.34:8080
+    routes:
       # login
       - name: login
         paths: ['/auth/login']

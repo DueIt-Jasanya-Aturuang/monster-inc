@@ -9,6 +9,14 @@ services:
         strip_path: false
         methods: ['GET']
         protocols: ['http', 'https']
+  - url: http://103.82.92.34:9090
+    routes:
+      # auth
+      - name: swagger
+        paths: ['/profile/swagger/.+']
+        strip_path: false
+        methods: ['GET']
+        protocols: ['http', 'https']
   # not autorization
   - url: http://103.82.92.34:8080
     routes:

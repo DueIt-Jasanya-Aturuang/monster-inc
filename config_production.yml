@@ -9,7 +9,7 @@ services:
         strip_path: false
         methods: ['GET']
         protocols: ['http', 'https']
-  - url: http://103.82.92.34:9090
+  - url: http://103.82.92.34:8181
     routes:
       # auth
       - name: swagger
@@ -94,7 +94,7 @@ services:
           userid_header: User-Id
           activasi_account: Activasi-Account
 
-  - url: http://103.82.92.34:9090
+  - url: http://103.82.92.34:8181
     routes:
       - name: get-profile
         paths: ['/profile/get-profile']

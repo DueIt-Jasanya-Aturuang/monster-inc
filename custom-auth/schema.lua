@@ -8,11 +8,10 @@ return {
 	    type = "record",
 	    fields = {
 		{ validation_endpoint = typedefs.url({ required = true }) },
-		{ ssl_verify		= { type = "boolean", default = true, required = false } },
-		{ token_header		= { type = "string", default = "Authorization", required = true } },
-		{ appid_header		= { type = "string", default = "App-Id", required = true } },
-		{ userid_header		= { type = "string", default = "User-Id", required = true } },
-		{ activasi_account	= { type = "string", default = "Activasi-Account", required = false } },
+		{ ssl_verify		= { type = "boolean", default = false, required = false } },
+		{ token_header		= { type = "string", default = "Authorization", required = false } },
+		{ appid_header		= { type = "string", default = "App-ID", required = false } },
+		{ userid_header		= { type = "string", default = "User-ID", required = false } },
 	    }
 	}
     }

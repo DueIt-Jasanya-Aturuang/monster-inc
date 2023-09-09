@@ -2,7 +2,7 @@ version: '3'
 services:
   kong:
     container_name: kong-dueit
-    image: 1acbc22b587b
+    build: .
     ports:
       - '8000:8000'
     environment:

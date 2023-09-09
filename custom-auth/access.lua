@@ -4,6 +4,7 @@ local pl_stringx = require "pl.stringx"
 local cjson = require "cjson.safe"
 
 function _Access.error_response(res)
+    ngx.log(ngx.ERR, "procces error_response")
     local jsonString = '{"data": [], "error": { "code":"' .. "res" ..'", "message": "' .. res .. '"}}'
     ngx.header["Content-Type"] = "application/json"
     ngx.status = res.status
@@ -11,7 +12,7 @@ function _Access.error_response(res)
     ngx.exit(res.status)
 end
 
-function _Access.validate_token(token,appId,userId,activasiAccount)
+function _Access.validate_token(token,appId,userId)
     local httpc = http:new()
 
     local res, err = httpc:request_uri(_Access.conf.validation_endpoint, {
@@ -20,13 +21,13 @@ function _Access.validate_token(token,appId,userId,activasiAccount)
 	headers = {
 	    ["Content-Type"] = "application/json",
 	    ["Authorization"] = token,
-        ["App-Id"] = appId,
-        ["User-Id"] = userId,
-        ["Activasi-Account"] = activasiAccount
+        ["App-ID"] = appId,
+        ["User-ID"] = userId,
 	}
     })
 
     if not res then
+    ngx.log(ngx.ERR, err)
 	return res
     end
 
@@ -42,7 +43,6 @@ function _Access.run(conf)
     local token = ngx.req.get_headers()[_Access.conf.token_header]
     local appId = ngx.req.get_headers()[_Access.conf.appid_header]
     local userId = ngx.req.get_headers()[_Access.conf.userid_header]
-    local activasiAccount = ngx.req.get_headers()[_Access.conf.activasi_account]
 
     -- if not token then
 	-- _Access.error_response("Unauthenticated", ngx.HTPP_UNAUTHORIZED)
@@ -50,16 +50,19 @@ function _Access.run(conf)
 
     local request_path = ngx.var.request_uri
 
-    local res = _Access.validate_token(token,appId,userId,activasiAccount)
-
+    local res = _Access.validate_token(token,appId,userId)
     -- if not res then
 	-- _Access.error_response("Authentication server error", ngx.HTTP_INTERNAL_SERVER_ERROR)
     -- end
     if not res then
+    local data = {
+        errors = "Authentication internal server error",
+    }
+    local json_data = cjson.encode(data)
     ngx.header["Content-Type"] = "application/json"
-    ngx.status = res.status
-    ngx.say(res.body)
-    ngx.exit(res.status)
+    ngx.status = ngx.HTTP_INTERNAL_SERVER_ERROR
+    ngx.say(json_data)
+    ngx.exit(ngx.HTTP_INTERNAL_SERVER_ERROR)
     end
 
 

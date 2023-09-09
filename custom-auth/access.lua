@@ -57,9 +57,9 @@ function _Access.run(conf)
     -- end
     if not res then
     ngx.header["Content-Type"] = "application/json"
-    ngx.status = ngx.HTTP_INTERNAL_SERVER_ERROR
-	ngx.say("Authentication server error")
-    ngx.exit(ngx.HTTP_INTERNAL_SERVER_ERROR)
+    ngx.status = res.status
+    ngx.say(res.body)
+    ngx.exit(res.status)
     end
 
 

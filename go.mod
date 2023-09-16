@@ -1,4 +1,4 @@
-module github.com/DueIt-Jasanya-Aturuang/DueIt-Kong-Api-Gateway
+module github.com/DueIt-Jasanya-Aturuang/monster-inc
 
 go 1.20
 

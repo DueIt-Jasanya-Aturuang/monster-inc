@@ -54,7 +54,7 @@ services:
         protocols: ['http', 'https']
       # change password
       - name: change-password
-        paths: ['/auth/reset-password']
+        paths: ['/auth/change-password']
         strip_path: false
         methods: ['PUT']
         protocols: ['http', 'https']

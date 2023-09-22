@@ -112,3 +112,7 @@ services:
           token_header: Authorization
           appid_header: App-ID
           userid_header: User-ID
+      - name: account-middleware
+        config:
+          validation_endpoint: https://account.dueit.my.id/account/otorisasi
+          userid_header: User-ID

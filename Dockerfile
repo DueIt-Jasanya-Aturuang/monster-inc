@@ -13,6 +13,7 @@ COPY --from=builder  /tmp/dueit-gateway/go-pluginserver /usr/local/bin/go-plugin
 COPY --from=builder  /tmp/dueit-gateway/key-checker.so /tmp/go-plugins
 # RUN sudo mkdir /usr/local/share/lua/5.1/kong/plugins/custom-auth
 COPY --from=builder  /tmp/dueit-gateway/custom-auth /usr/local/share/lua/5.1/kong/plugins/custom-auth
+COPY --from=builder  /tmp/dueit-gateway/account-middleware /usr/local/share/lua/5.1/kong/plugins/account-middleware
 COPY config.yml /tmp/config.yml
 COPY config_production.yml /tmp/config_production.yml
 

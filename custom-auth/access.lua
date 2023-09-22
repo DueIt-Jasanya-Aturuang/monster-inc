@@ -33,10 +33,10 @@ function _Access.validate_token(token, appId, userId, activasi)
     end
 
     if res.status ~= 200 then
-        return { status = res.status, body = res.body }
+        return { status = res.status, body = res.body, autho = res.headers["Authorization"] }
     end
 
-    return { status = res.status, body = res.body }
+    return { status = res.status, body = res.body, autho = res.headers["Authorization"] }
 end
 
 function _Access.run(conf)
@@ -77,6 +77,9 @@ function _Access.run(conf)
         ngx.say(res.body)
         ngx.exit(res.status)
     end
+
+
+    ngx.req.set_header("Authorization", res.autho)
     -- if res.status ~= 200 then
     -- _Access.error_response("Authentication refused the resquest", ngx.HTTP_UNAUTHORIZED)
     -- end

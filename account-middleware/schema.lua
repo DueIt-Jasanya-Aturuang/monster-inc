@@ -7,9 +7,9 @@ return {
         { config = {
             type = "record",
             fields = {
-                { validation_endpoint = typedefs.url({ required = true }) },
+                { validationaccount_endpoint = typedefs.url({ required = true }) },
                 { ssl_verify = { type = "boolean", default = false, required = false } },
-                { userid_header = { type = "string", default = "User-ID", required = false } },
+                { useridaccount_header = { type = "string", default = "User-ID", required = false } },
             }
         }
         }

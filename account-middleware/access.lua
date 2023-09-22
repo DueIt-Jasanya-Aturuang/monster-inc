@@ -15,7 +15,7 @@ end
 function _Access.validate_token(userId)
     local httpc = http:new()
 
-    local res, err = httpc:request_uri(_Access.conf.validation_endpoint, {
+    local res, err = httpc:request_uri(_Access.conf.validationaccount_endpoint, {
         method = "POST",
         ssl_verify = _Access.conf.ssl_verify,
         headers = {
@@ -30,16 +30,17 @@ function _Access.validate_token(userId)
     end
 
     if res.status ~= 200 then
-        return { status = res.status, body = res.body }
+        return { status = res.status, body = res.body, profile_id = res.headers["Profile-ID"] }
     end
 
-    return { status = res.status, body = res.body }
+    ngx.log(ngx.ERR, res.headers["Profile-ID"])
+
+    return { status = res.status, body = res.body, profile_id = res.headers["Profile-ID"] }
 end
 
 function _Access.run(conf)
     _Access.conf = conf
-    local userId = ngx.req.get_headers()[_Access.conf.userid_header]
-
+    local userId = ngx.req.get_headers()[_Access.conf.useridaccount_header]
     -- if not token then
     -- _Access.error_response("Unauthenticated", ngx.HTPP_UNAUTHORIZED)
     -- end
@@ -67,6 +68,8 @@ function _Access.run(conf)
         ngx.say(res.body)
         ngx.exit(res.status)
     end
+
+    ngx.req.set_header("Profile-ID", res.profile_id)
     -- if res.status ~= 200 then
     -- _Access.error_response("Authentication refused the resquest", ngx.HTTP_UNAUTHORIZED)
     -- end

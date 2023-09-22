@@ -68,7 +68,7 @@ services:
 #      - name: key-checker
 #        config:
 #          apikey: secretkeyjasanyaauth
-      - name: custom-auth
+      - name: acustom-auth
         config:
           validation_endpoint: https://auth.jasanya.tech/auth/otorisasi
           token_header: Authorization
@@ -83,12 +83,12 @@ services:
         methods: ['GET']
         protocols: ['http', 'https']
       - name: update-account
-        paths: ['/account/.+']
+        paths: ['/account']
         strip_path: false
         methods: ['PUT']
         protocols: ['http', 'https']
       - name: create-profile-config
-        paths: [ '/account/profile-config/.+' ]
+        paths: [ '/account/profile-config' ]
         strip_path: false
         methods: [ 'POST' ]
         protocols: [ 'http', 'https' ]
@@ -106,13 +106,13 @@ services:
 #      - name: key-checker
 #        config:
 #          apikey: secretkeyjasanyaauth
-      - name: custom-auth
+      - name: acustom-auth
         config:
           validation_endpoint:  https://auth.jasanya.tech/auth/otorisasi
           token_header: Authorization
           appid_header: App-ID
           userid_header: User-ID
-      - name: account-middleware
+      - name: baccount-middleware
         config:
-          validation_endpoint: https://account.dueit.my.id/account/otorisasi
-          userid_header: User-ID
+          validationaccount_endpoint: https://account.dueit.my.id/account/otorisasi
+          useridaccount_header: User-ID

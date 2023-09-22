@@ -3,17 +3,12 @@ services:
   kong:
     container_name: kong-dueit
     build: .
-    ports:
-      - '8000:8000'
+    network_mode: host
+#    ports:
+#      - '8000:8000'
     environment:
       KONG_DATABASE: 'off'
       KONG_GO_PLUGINS_DIR: /tmp/go-plugins
       KONG_DECLARATIVE_CONFIG: /tmp/config_production.yml
       # KONG_DECLARATIVE_CONFIG: /tmp/config.yml
-      KONG_PLUGINS: custom-auth,key-checker, account-middleware
-    networks:
-      - dueit_network
-
-networks:
-  dueit_network:
-    external: true
+      KONG_PLUGINS: acustom-auth,baccount-middleware,key-checker

@@ -1,7 +1,7 @@
 local typedefs = require "kong.db.schema.typedefs"
 
 return {
-    name = "custom-auth",
+    name = "account-middleware",
     fields = {
         { protocols = typedefs.protocols_http },
         { config = {

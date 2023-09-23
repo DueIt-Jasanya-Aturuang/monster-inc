@@ -4,70 +4,70 @@ services:
   - url: https://auth.jasanya.tech
     routes:
       - name: login
-        paths: ['/auth/login']
+        paths: [ '/auth/login' ]
         strip_path: false
-        methods: ['POST']
-        protocols: ['http', 'https']
+        methods: [ 'POST' ]
+        protocols: [ 'http', 'https' ]
       - name: login-with-google
         paths: [ '/auth/login-google' ]
         strip_path: false
         methods: [ 'POST' ]
         protocols: [ 'http', 'https' ]
       - name: register
-        paths: ['/auth/register']
+        paths: [ '/auth/register' ]
         strip_path: false
-        methods: ['POST']
-        protocols: ['http', 'https']
+        methods: [ 'POST' ]
+        protocols: [ 'http', 'https' ]
       - name: forgot-password
-        paths: ['/auth/forgot-password']
+        paths: [ '/auth/forgot-password' ]
         strip_path: false
-        methods: ['POST']
-        protocols: ['http', 'https']
+        methods: [ 'POST' ]
+        protocols: [ 'http', 'https' ]
       - name: change-forgot-password
-        paths: ['/auth/forgot-password']
+        paths: [ '/auth/forgot-password' ]
         strip_path: false
-        methods: ['PUT']
-        protocols: ['http', 'https']
+        methods: [ 'PUT' ]
+        protocols: [ 'http', 'https' ]
       - name: generate-otp
         paths: [ '/auth/otp' ]
         strip_path: false
         methods: [ 'POST' ]
         protocols: [ 'http', 'https' ]
-#    plugins:
-#      - name: key-checker
-#        config:
-#          apikey: secretkeyjasanyaauth
+  #    plugins:
+  #      - name: key-checker
+  #        config:
+  #          apikey: secretkeyjasanyaauth
 
   # with autorization
   - url: https://auth.jasanya.tech
     routes:
       - name: get-otp
-        paths: ['/auth/otp']
+        paths: [ '/auth/otp' ]
         strip_path: false
-        methods: ['POST']
-        protocols: ['http', 'https']
+        methods: [ 'POST' ]
+        protocols: [ 'http', 'https' ]
       # activasi-account
       - name: activasi-account
-        paths: ['/auth/activasi-account']
+        paths: [ '/auth/activasi-account' ]
         strip_path: false
-        methods: ['PUT']
-        protocols: ['http', 'https']
+        methods: [ 'PUT' ]
+        protocols: [ 'http', 'https' ]
       # change password
       - name: change-password
-        paths: ['/auth/change-password']
+        paths: [ '/auth/change-password' ]
         strip_path: false
-        methods: ['PUT']
-        protocols: ['http', 'https']
+        methods: [ 'PUT' ]
+        protocols: [ 'http', 'https' ]
       # logout
       - name: logout
-        paths: ['/auth/logout']
+        paths: [ '/auth/logout' ]
         strip_path: false
-        methods: ['POST']
-        protocols: ['http', 'https']
+        methods: [ 'POST' ]
+        protocols: [ 'http', 'https' ]
     plugins:
-#      - name: key-checker
-#        config:
-#          apikey: secretkeyjasanyaauth
+      #      - name: key-checker
+      #        config:
+      #          apikey: secretkeyjasanyaauth
       - name: acustom-auth
         config:
           validation_endpoint: https://auth.jasanya.tech/auth/otorisasi
@@ -78,15 +78,15 @@ services:
   - url: https://account.dueit.my.id
     routes:
       - name: get-profile
-        paths: ['/account/profile']
+        paths: [ '/account/profile' ]
         strip_path: false
-        methods: ['GET']
-        protocols: ['http', 'https']
+        methods: [ 'GET' ]
+        protocols: [ 'http', 'https' ]
       - name: update-account
-        paths: ['/account']
+        paths: [ '/account' ]
         strip_path: false
-        methods: ['PUT']
-        protocols: ['http', 'https']
+        methods: [ 'PUT' ]
+        protocols: [ 'http', 'https' ]
       - name: create-profile-config
         paths: [ '/account/profile-config' ]
         strip_path: false
@@ -103,12 +103,88 @@ services:
         methods: [ 'PUT' ]
         protocols: [ 'http', 'https' ]
     plugins:
-#      - name: key-checker
-#        config:
-#          apikey: secretkeyjasanyaauth
+      #      - name: key-checker
+      #        config:
+      #          apikey: secretkeyjasanyaauth
       - name: acustom-auth
         config:
-          validation_endpoint:  https://auth.jasanya.tech/auth/otorisasi
+          validation_endpoint: https://auth.jasanya.tech/auth/otorisasi
+          token_header: Authorization
+          appid_header: App-ID
+          userid_header: User-ID
+      - name: baccount-middleware
+        config:
+          validationaccount_endpoint: https://account.dueit.my.id/account/otorisasi
+          useridaccount_header: User-ID
+
+  #    finance service
+  - url: https://finance.dueit.my.id
+    routes:
+      - name: payment
+        paths: [ '/finance/payment' ]
+        strip_path: false
+        methods: [ 'GET' ]
+      - name: create-payment
+        paths: [ '/finance/payment' ]
+        strip_path: false
+        methods: [ 'POST' ]
+      - name: PUT-payment
+        paths: [ '/finance/payment' ]
+        strip_path: false
+        methods: [ 'PUT' ]
+      - name: get-by-periode-spending-type
+        paths: [ '/finance/spending-type/+.' ]
+        strip_path: false
+        methods: [ 'GET' ]
+      - name: get-all-spending-type
+        paths: [ '/finance/spending-type' ]
+        strip_path: false
+        methods: [ 'GET' ]
+      - name: detail-spending-type
+        paths: [ '/finance/spending-type/detail/+.' ]
+        strip_path: false
+        methods: [ 'GET' ]
+      - name: create-spending-type
+        paths: [ '/finance/spending-type' ]
+        strip_path: false
+        methods: [ 'POST' ]
+      - name: put-spending-type
+        paths: [ '/finance/spending-type/+.' ]
+        strip_path: false
+        methods: [ 'PUT' ]
+      - name: delete-spending-type
+        paths: [ '/finance/spending-type/+.' ]
+        strip_path: false
+        methods: [ 'DELETE' ]
+      - name: spending-history
+        paths: [ '/finance/spending-history' ]
+        strip_path: false
+        methods: [ 'GET' ]
+      - name: spending-history-detail
+        paths: [ '/finance/spending-history/+.' ]
+        strip_path: false
+        methods: [ 'GET' ]
+      - name: create-spending-history
+        paths: [ '/finance/spending-history' ]
+        strip_path: false
+        methods: [ 'POST' ]
+      - name: put-spending-history
+        paths: [ '/finance/spending-history/+.' ]
+        strip_path: false
+        methods: [ 'PUT' ]
+      - name: del-spending-history
+        paths: [ '/finance/spending-history/+.' ]
+        strip_path: false
+        methods: [ 'DELETE' ]
+      - name: balance
+        paths: [ '/finance/balance' ]
+        strip_path: false
+        methods: [ 'GET' ]
+
+    plugins:
+      - name: acustom-auth
+        config:
+          validation_endpoint: https://auth.jasanya.tech/auth/otorisasi
           token_header: Authorization
           appid_header: App-ID
           userid_header: User-ID

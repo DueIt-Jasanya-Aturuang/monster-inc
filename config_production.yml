@@ -58,6 +58,11 @@ services:
         strip_path: false
         methods: [ 'PUT' ]
         protocols: [ 'http', 'https' ]
+      - name: change-username
+        paths: [ '/auth/change-username' ]
+        strip_path: false
+        methods: [ 'PUT' ]
+        protocols: [ 'http', 'https' ]
       # logout
       - name: logout
         paths: [ '/auth/logout' ]

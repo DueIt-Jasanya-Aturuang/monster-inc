@@ -41,11 +41,11 @@ services:
   # with autorization
   - url: https://auth.jasanya.tech
     routes:
-      - name: get-otp
-        paths: [ '/auth/otp' ]
-        strip_path: false
-        methods: [ 'POST' ]
-        protocols: [ 'http', 'https' ]
+      #- name: get-otp
+       # paths: [ '/auth/otp' ]
+       # strip_path: false
+      #  methods: [ 'POST' ]
+        # protocols: [ 'http', 'https' ]
       # activasi-account
       - name: activasi-account
         paths: [ '/auth/activasi-account' ]

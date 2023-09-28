@@ -134,9 +134,13 @@ services:
         strip_path: false
         methods: [ 'POST' ]
       - name: PUT-payment
-        paths: [ '/finance/payment' ]
+        paths: [ '/finance/payment/+.' ]
         strip_path: false
         methods: [ 'PUT' ]
+      - name: delete-payment
+        paths: [ '/finance/payment/+.' ]
+        strip_path: false
+        methods: [ 'DELETE' ]
       - name: get-by-periode-spending-type
         paths: [ '/finance/spending-type/+.' ]
         strip_path: false

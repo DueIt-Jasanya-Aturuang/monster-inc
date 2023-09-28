@@ -53,11 +53,13 @@ function _Access.run(conf)
     local data = ""
     if request_path == "/auth/activasi-account" then
         data = "true"
+    elseif request_path == "/auth/logout" then
+        data = "true"
     else
         data = "false"
     end
     ngx.log(ngx.ERR, data)
-    local res = _Access.validate_token(token, appId, userId,data)
+    local res = _Access.validate_token(token, appId, userId, data)
 
     if not res then
         local data = {
@@ -77,7 +79,6 @@ function _Access.run(conf)
         ngx.say(res.body)
         ngx.exit(res.status)
     end
-
 
     ngx.req.set_header("Authorization", res.autho)
     -- if res.status ~= 200 then

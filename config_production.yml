@@ -141,6 +141,7 @@ services:
         paths: [ '/finance/payment/+.' ]
         strip_path: false
         methods: [ 'DELETE' ]
+
       - name: get-by-periode-spending-type
         paths: [ '/finance/spending-type/+.' ]
         strip_path: false
@@ -165,6 +166,7 @@ services:
         paths: [ '/finance/spending-type/+.' ]
         strip_path: false
         methods: [ 'DELETE' ]
+
       - name: spending-history
         paths: [ '/finance/spending-history' ]
         strip_path: false
@@ -185,6 +187,28 @@ services:
         paths: [ '/finance/spending-history/+.' ]
         strip_path: false
         methods: [ 'DELETE' ]
+
+      - name: get-all-income-type
+        paths: [ '/finance/income-type' ]
+        strip_path: false
+        methods: [ 'GET' ]
+      - name: detail-income-type
+        paths: [ '/finance/income-type/detail/+.' ]
+        strip_path: false
+        methods: [ 'GET' ]
+      - name: create-income-type
+        paths: [ '/finance/income-type' ]
+        strip_path: false
+        methods: [ 'POST' ]
+      - name: put-income-type
+        paths: [ '/finance/income-type/+.' ]
+        strip_path: false
+        methods: [ 'PUT' ]
+      - name: delete-income-type
+        paths: [ '/finance/spending-type/+.' ]
+        strip_path: false
+        methods: [ 'DELETE' ]
+
       - name: balance
         paths: [ '/finance/balance' ]
         strip_path: false

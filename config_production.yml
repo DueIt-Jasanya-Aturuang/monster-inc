@@ -205,7 +205,7 @@ services:
         strip_path: false
         methods: [ 'PUT' ]
       - name: delete-income-type
-        paths: [ '/finance/spending-type/+.' ]
+        paths: [ '/finance/income-type/+.' ]
         strip_path: false
         methods: [ 'DELETE' ]
 

@@ -33,19 +33,14 @@ services:
         strip_path: false
         methods: [ 'POST' ]
         protocols: [ 'http', 'https' ]
-  #    plugins:
-  #      - name: key-checker
-  #        config:
-  #          apikey: secretkeyjasanyaauth
+    plugins:
+      - name: key-checker
+        config:
+          apikey: secretkeyjasanyaauth
 
   # with autorization
   - url: https://auth.jasanya.tech
     routes:
-      #- name: get-otp
-       # paths: [ '/auth/otp' ]
-       # strip_path: false
-      #  methods: [ 'POST' ]
-        # protocols: [ 'http', 'https' ]
       # activasi-account
       - name: activasi-account
         paths: [ '/auth/activasi-account' ]
@@ -70,9 +65,9 @@ services:
         methods: [ 'POST' ]
         protocols: [ 'http', 'https' ]
     plugins:
-      #      - name: key-checker
-      #        config:
-      #          apikey: secretkeyjasanyaauth
+      - name: key-checker
+        config:
+          apikey: secretkeyjasanyaauth
       - name: acustom-auth
         config:
           validation_endpoint: https://auth.jasanya.tech/auth/otorisasi
@@ -108,9 +103,9 @@ services:
         methods: [ 'PUT' ]
         protocols: [ 'http', 'https' ]
     plugins:
-      #      - name: key-checker
-      #        config:
-      #          apikey: secretkeyjasanyaauth
+      - name: key-checker
+        config:
+          apikey: secretkeyjasanyaauth
       - name: acustom-auth
         config:
           validation_endpoint: https://auth.jasanya.tech/auth/otorisasi
@@ -209,12 +204,36 @@ services:
         strip_path: false
         methods: [ 'DELETE' ]
 
+      - name: income-history
+        paths: [ '/finance/income-history' ]
+        strip_path: false
+        methods: [ 'GET' ]
+      - name: income-history-detail
+        paths: [ '/finance/income-history/+.' ]
+        strip_path: false
+        methods: [ 'GET' ]
+      - name: create-income-history
+        paths: [ '/finance/income-history' ]
+        strip_path: false
+        methods: [ 'POST' ]
+      - name: put-income-history
+        paths: [ '/finance/income-history/+.' ]
+        strip_path: false
+        methods: [ 'PUT' ]
+      - name: del-income-history
+        paths: [ '/finance/income-history/+.' ]
+        strip_path: false
+        methods: [ 'DELETE' ]
+
       - name: balance
         paths: [ '/finance/balance' ]
         strip_path: false
         methods: [ 'GET' ]
 
     plugins:
+      - name: key-checker
+        config:
+          apikey: secretkeyjasanyaauth
       - name: acustom-auth
         config:
           validation_endpoint: https://auth.jasanya.tech/auth/otorisasi

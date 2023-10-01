@@ -64,6 +64,9 @@ function _Access.run(conf)
     if not res then
         local data = {
             errors = "Authentication internal server error",
+            status = "99",
+            message = "internal server error",
+            data = ngx.null,
         }
         local json_data = cjson.encode(data)
         ngx.header["Content-Type"] = "application/json"

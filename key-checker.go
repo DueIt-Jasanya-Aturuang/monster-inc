@@ -15,7 +15,7 @@ func New() interface{} {
 }
 
 func (conf Config) Access(kong *pdk.PDK) {
-	key, err := kong.Request.GetHeader("key")
+	key, err := kong.Request.GetHeader("X-Key")
 	apiKey := conf.Apikey
 
 	if err != nil {

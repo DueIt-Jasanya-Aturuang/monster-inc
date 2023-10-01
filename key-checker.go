@@ -1,6 +1,8 @@
 package main
 
 import (
+	"encoding/json"
+
 	"github.com/Kong/go-pdk"
 )
 
@@ -23,7 +25,18 @@ func (conf Config) Access(kong *pdk.PDK) {
 	x := make(map[string][]string)
 	x["Content-Type"] = append(x["Content-Type"], "application/json")
 
+	resp := map[string]interface{}{
+		"status":  "05",
+		"message": "FORBIDDEN",
+		"errors":  "invalid key",
+		"data":    nil,
+	}
+	marshal, err := json.Marshal(resp)
+	if err != nil {
+		kong.Response.Exit(500, "internal server error", x)
+	}
+
 	if apiKey != key {
-		kong.Response.Exit(403, "Youu have no correct key", x)
+		kong.Response.Exit(403, string(marshal), x)
 	}
 }

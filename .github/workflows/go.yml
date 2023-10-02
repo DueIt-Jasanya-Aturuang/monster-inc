@@ -25,8 +25,10 @@ jobs:
           password: ${{ secrets.PASSWORD }}
 
       - name: build and push
+        env:
+          API_KEY_AUTH: ${{ secrets.API_KEY_AUTH }}
         run: |
-          docker build . --tag ghcr.io/dueit-jasanya-aturuang/kong-gateway:1.0
+          docker build --build-arg API_KEY_AUTH=$API_KEY_AUTH --tag ghcr.io/dueit-jasanya-aturuang/kong-gateway:1.0 .
           docker push ghcr.io/dueit-jasanya-aturuang/kong-gateway:1.0
           
       - name: deploy to hosting ssh main branch

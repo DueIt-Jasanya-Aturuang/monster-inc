@@ -38,8 +38,8 @@ services:
         config:
           auth: false
           account: false
-          apiKeyAuth_header: ${{ secrets.API_KEY_AUTH }}
-          key: ${{ secrets.API_KEY_AUTH }}
+          apiKeyAuth_header: REPLACE_WITH_API_KEY_AUTH
+          key: REPLACE_WITH_API_KEY_AUTH
 
   # auth service with autorization
   - url: https://auth.jasanya.tech
@@ -72,8 +72,8 @@ services:
         config:
           auth: true
           account: false
-          apiKeyAuth_header: ${{ secrets.API_KEY_AUTH }}
-          key: ${{ secrets.API_KEY_AUTH }}
+          apiKeyAuth_header: REPLACE_WITH_API_KEY_AUTH
+          key: REPLACE_WITH_API_KEY_AUTH
 
 # account service
   - url: https://account.dueit.my.id
@@ -108,7 +108,7 @@ services:
         config:
           auth: true
           account: true
-          apiKeyAuth_header: ${{ secrets.API_KEY_AUTH }}
+          apiKeyAuth_header: REPLACE_WITH_API_KEY_AUTH
           apiKeyAccount_header: "apikeyaccount"
           key: "apikeyaccount"
 
@@ -230,7 +230,7 @@ services:
         config:
           auth: true
           account: true
-          apiKeyAuth_header: ${{ secrets.API_KEY_AUTH }}
+          apiKeyAuth_header: REPLACE_WITH_API_KEY_AUTH
           apiKeyAccount_header: "apikeyaccount"
           apiKeyFinance_header: "apikeyfinance"
           key: "apikeyfinance"

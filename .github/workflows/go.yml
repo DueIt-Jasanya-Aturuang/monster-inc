@@ -32,7 +32,10 @@ jobs:
           pull: true
           push: true
           tags: ghcr.io/dueit-jasanya-aturuang/kong-gateway:1.0
-          build-args: API_KEY_AUTH=${{ secrets.API_KEY_AUTH }}, API_KEY_ACCOUNT=${{ secrets.API_KEY_ACCOUNT }}, API_KEY_FINANCE=${{ secrets.API_KEY_FINANCE }}
+          build-args: |
+            API_KEY_AUTH=${{ secrets.API_KEY_AUTH }}
+            API_KEY_ACCOUNT=${{ secrets.API_KEY_ACCOUNT }}
+            API_KEY_FINANCE=${{ secrets.API_KEY_FINANCE }}
 
       - name: deploy to hosting ssh main branch
         uses: appleboy/ssh-action@master

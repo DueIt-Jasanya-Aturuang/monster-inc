@@ -62,7 +62,7 @@ services:
       - name: key-checker
         config:
           apikey: secretkeyjasanyaauth
-      - name: custom-auth
+      - name: middleware
         config:
           validation_endpoint: http://localhost:8080/auth/validate-token
           token_header: Authorization

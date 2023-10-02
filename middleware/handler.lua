@@ -1,10 +1,10 @@
 local BasePlugin = require "kong.plugins.base_plugin"
-local access = require "kong.plugins.acustom-auth.access"
+local access = require "kong.plugins.middleware.access"
 
 local TokenHandler = BasePlugin:extend()
 
 function TokenHandler:new()
-    TokenHandler.super.new(self, "acustom-auth")
+    TokenHandler.super.new(self, "middleware")
 end
 
 function TokenHandler:access(conf)

@@ -1,6 +1,6 @@
 _format_version: '1.1'
 services:
-  # not autorization
+  # auth service without autorization
   - url: https://auth.jasanya.tech
     routes:
       - name: login
@@ -34,11 +34,14 @@ services:
         methods: [ 'POST' ]
         protocols: [ 'http', 'https' ]
     plugins:
-      - name: key-checker
+      - name: middleware
         config:
-          apikey: secretkeyjasanyaauth
+          auth: false
+          account: false
+          apiKeyAuth_header: ${{ secrets.API_KEY_AUTH }}
+          key: ${{ secrets.API_KEY_AUTH }}
 
-  # with autorization
+  # auth service with autorization
   - url: https://auth.jasanya.tech
     routes:
       # activasi-account
@@ -65,16 +68,14 @@ services:
         methods: [ 'POST' ]
         protocols: [ 'http', 'https' ]
     plugins:
-      - name: key-checker
+      - name: middleware
         config:
-          apikey: secretkeyjasanyaauth
-      - name: acustom-auth
-        config:
-          validation_endpoint: https://auth.jasanya.tech/auth/otorisasi
-          token_header: Authorization
-          appid_header: App-ID
-          userid_header: User-ID
+          auth: true
+          account: false
+          apiKeyAuth_header: ${{ secrets.API_KEY_AUTH }}
+          key: ${{ secrets.API_KEY_AUTH }}
 
+# account service
   - url: https://account.dueit.my.id
     routes:
       - name: get-profile
@@ -103,19 +104,13 @@ services:
         methods: [ 'PUT' ]
         protocols: [ 'http', 'https' ]
     plugins:
-      - name: key-checker
+      - name: middleware
         config:
-          apikey: secretkeyjasanyaauth
-      - name: acustom-auth
-        config:
-          validation_endpoint: https://auth.jasanya.tech/auth/otorisasi
-          token_header: Authorization
-          appid_header: App-ID
-          userid_header: User-ID
-      - name: baccount-middleware
-        config:
-          validationaccount_endpoint: https://account.dueit.my.id/account/otorisasi
-          useridaccount_header: User-ID
+          auth: true
+          account: true
+          apiKeyAuth_header: ${{ secrets.API_KEY_AUTH }}
+          apiKeyAccount_header: "apikeyaccount"
+          key: "apikeyaccount"
 
   #    finance service
   - url: https://finance.dueit.my.id
@@ -231,16 +226,11 @@ services:
         methods: [ 'GET' ]
 
     plugins:
-      - name: key-checker
+      - name: middleware
         config:
-          apikey: secretkeyjasanyaauth
-      - name: acustom-auth
-        config:
-          validation_endpoint: https://auth.jasanya.tech/auth/otorisasi
-          token_header: Authorization
-          appid_header: App-ID
-          userid_header: User-ID
-      - name: baccount-middleware
-        config:
-          validationaccount_endpoint: https://account.dueit.my.id/account/otorisasi
-          useridaccount_header: User-ID
+          auth: true
+          account: true
+          apiKeyAuth_header: ${{ secrets.API_KEY_AUTH }}
+          apiKeyAccount_header: "apikeyaccount"
+          apiKeyFinance_header: "apikeyfinance"
+          key: "apikeyfinance"

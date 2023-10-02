@@ -1,6 +1,5 @@
 local _Access = { conf = {} }
 local http = require "resty.http"
---local pl_stringx = require "pl.stringx"
 local cjson = require "cjson.safe"
 
 function _Access.error_response(res)
@@ -41,16 +40,11 @@ end
 function _Access.run(conf)
     _Access.conf = conf
     local userId = ngx.req.get_headers()[_Access.conf.useridaccount_header]
-    -- if not token then
-    -- _Access.error_response("Unauthenticated", ngx.HTPP_UNAUTHORIZED)
-    -- end
 
     --local request_path = ngx.var.request_uri
 
     local res = _Access.validate_token(userId)
-    -- if not res then
-    -- _Access.error_response("Authentication server error", ngx.HTTP_INTERNAL_SERVER_ERROR)
-    -- end
+
     if not res then
         local data = {
             errors = "Authentication internal server error",
@@ -73,9 +67,6 @@ function _Access.run(conf)
     end
 
     ngx.req.set_header("Profile-ID", res.profile_id)
-    -- if res.status ~= 200 then
-    -- _Access.error_response("Authentication refused the resquest", ngx.HTTP_UNAUTHORIZED)
-    -- end
 
     -- ngx.req.clear_header(_Access.conf.token_header)
 end

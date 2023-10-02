@@ -10,6 +10,8 @@
 FROM kong:2.0.4-alpine
 
 ARG API_KEY_AUTH
+ARG API_KEY_ACCOUNT
+ARG API_KEY_FINANCE
 
 RUN mkdir /tmp/go-plugins
 USER root
@@ -19,9 +21,11 @@ USER root
 COPY  ./middleware /usr/local/share/lua/5.1/kong/plugins/middleware
 #COPY --from=builder  /tmp/dueit-gateway/account-middleware /usr/local/share/lua/5.1/kong/plugins/baccount-middleware
 COPY config.yml /tmp/config.yml
-COPY config_production.yml /tmp/config_production_replace.yml
+COPY config_production.yml /tmp/config_production.yml
 
-RUN sed "s/REPLACE_WITH_API_KEY_AUTH/$API_KEY_AUTH/g" /tmp/config_production_replace.yml > /tmp/config_production.yml
+RUN sed -i "s/REPLACE_WITH_API_KEY_AUTH/$API_KEY_AUTH/g" /tmp/config_production.yml
+RUN sed -i "s/REPLACE_WITH_API_KEY_ACCOUNT/$API_KEY_ACCOUNT/g" /tmp/config_production.yml
+RUN sed -i "s/REPLACE_WITH_API_KEY_FINANCE/$API_KEY_FINANCE/g" /tmp/config_production.yml
 
 
 RUN #chown -R kong:kong /tmp

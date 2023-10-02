@@ -109,8 +109,8 @@ services:
           auth: true
           account: true
           apiKeyAuth_header: REPLACE_WITH_API_KEY_AUTH
-          apiKeyAccount_header: "apikeyaccount"
-          key: "apikeyaccount"
+          apiKeyAccount_header: REPLACE_WITH_API_KEY_ACCOUNT
+          key: REPLACE_WITH_API_KEY_ACCOUNT
 
   #    finance service
   - url: https://finance.dueit.my.id
@@ -231,6 +231,6 @@ services:
           auth: true
           account: true
           apiKeyAuth_header: REPLACE_WITH_API_KEY_AUTH
-          apiKeyAccount_header: "apikeyaccount"
-          apiKeyFinance_header: "apikeyfinance"
-          key: "apikeyfinance"
+          apiKeyAccount_header: REPLACE_WITH_API_KEY_ACCOUNT
+          apiKeyFinance_header: REPLACE_WITH_API_KEY_FINANCE
+          key: REPLACE_WITH_API_KEY_FINANCE

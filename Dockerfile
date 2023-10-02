@@ -9,6 +9,8 @@
 
 FROM kong:2.0.4-alpine
 
+ARG API_KEY_AUTH
+
 RUN mkdir /tmp/go-plugins
 USER root
 #COPY --from=builder  /tmp/dueit-gateway/go-pluginserver /usr/local/bin/go-pluginserver

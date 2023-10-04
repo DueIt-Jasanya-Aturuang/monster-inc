@@ -44,6 +44,12 @@ services:
   # auth service with autorization
   - url: https://auth.jasanya.tech
     routes:
+      # get-account
+      - name: get-user
+        paths: [ '/auth/user' ]
+        strip_path: false
+        methods: [ 'GET' ]
+        protocols: [ 'http', 'https' ]
       # activasi-account
       - name: activasi-account
         paths: [ '/auth/activasi-account' ]

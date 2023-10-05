@@ -104,10 +104,30 @@ services:
         strip_path: false
         methods: [ 'GET' ]
         protocols: [ 'http', 'https' ]
-      - name: update-profile-config
-        paths: [ '/account/profile-config/.+' ]
+      - name: get-all-notif
+        paths: [ '/account/notif' ]
+        strip_path: false
+        methods: [ 'GET' ]
+        protocols: [ 'http', 'https' ]
+      - name: get-detail-notif
+        paths: [ '/account/notif/.+' ]
+        strip_path: false
+        methods: [ 'GET' ]
+        protocols: [ 'http', 'https' ]
+      - name: put-detail-notif
+        paths: [ '/account/notif/.+' ]
         strip_path: false
         methods: [ 'PUT' ]
+        protocols: [ 'http', 'https' ]
+      - name: delete-detail-notif
+        paths: [ '/account/notif/.+' ]
+        strip_path: false
+        methods: [ 'DELETE' ]
+        protocols: [ 'http', 'https' ]
+      - name: delete-all-notif
+        paths: [ '/account/notif' ]
+        strip_path: false
+        methods: [ 'DELETE' ]
         protocols: [ 'http', 'https' ]
     plugins:
       - name: middleware

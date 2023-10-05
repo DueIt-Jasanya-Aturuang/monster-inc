@@ -2,7 +2,13 @@ version: '3'
 services:
   kong:
     container_name: kong-dueit
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        API_KEY_AUTH: your_auth_key
+        API_KEY_ACCOUNT: your_account_key
+        API_KEY_FINANCE: your_finance_key
     network_mode: host
 #    ports:
 #      - '8000:8000'

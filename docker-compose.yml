@@ -17,4 +17,4 @@ services:
       KONG_GO_PLUGINS_DIR: /tmp/go-plugins
       KONG_DECLARATIVE_CONFIG: /tmp/config_production.yml
       # KONG_DECLARATIVE_CONFIG: /tmp/config.yml
-      KONG_PLUGINS: middleware
+      KONG_PLUGINS: middleware, cors

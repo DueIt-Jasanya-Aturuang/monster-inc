@@ -34,6 +34,25 @@ services:
         methods: [ 'POST' ]
         protocols: [ 'http', 'https' ]
     plugins:
+      - name: cors
+        config:
+          origins:
+            - "http://localhost:3000" # Ganti dengan domain yang diperbolehkan
+          methods:
+            - GET
+            - POST
+            - PUT
+            - DELETE
+          headers:
+            - Content-Type
+            - Authorization
+            - App-ID
+            - User-ID
+            # tambahkan header lain yang perlu Anda izinkan
+          exposed_headers:
+            - Authorization
+            - App-ID
+            - User-ID
       - name: middleware
         config:
           auth: false

@@ -280,7 +280,7 @@ services:
           apiKeyFinance_header: REPLACE_WITH_API_KEY_FINANCE
           key: REPLACE_WITH_API_KEY_FINANCE
 
-  - url: https://gql.dueit.my.id/gql
+  - url: https://gql.dueit.my.id
     routes:
       - name: graphql
         paths: [ '/gql' ]

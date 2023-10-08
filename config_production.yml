@@ -279,3 +279,19 @@ services:
           apiKeyAccount_header: REPLACE_WITH_API_KEY_ACCOUNT
           apiKeyFinance_header: REPLACE_WITH_API_KEY_FINANCE
           key: REPLACE_WITH_API_KEY_FINANCE
+
+  - url: https://gql.dueit.my.id/gql
+    routes:
+      - name: graphql
+        paths: [ '/gql' ]
+        strip_path: false
+        methods: [ 'POST' ]
+        protocols: [ 'http', 'https' ]
+    plugins:
+      - name: middleware
+        config:
+          auth: true
+          account: true
+          apiKeyAuth_header: REPLACE_WITH_API_KEY_AUTH
+          apiKeyAccount_header: REPLACE_WITH_API_KEY_ACCOUNT
+          key: REPLACE_WITH_API_KEY_PAGE

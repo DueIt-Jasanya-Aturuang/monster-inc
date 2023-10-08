@@ -12,6 +12,7 @@ FROM kong:2.0.4-alpine
 ARG API_KEY_AUTH
 ARG API_KEY_ACCOUNT
 ARG API_KEY_FINANCE
+ARG API_KEY_PAGE
 
 RUN mkdir /tmp/go-plugins
 USER root
@@ -26,6 +27,7 @@ COPY config_production.yml /tmp/config_production.yml
 RUN sed -i "s/REPLACE_WITH_API_KEY_AUTH/$API_KEY_AUTH/g" /tmp/config_production.yml
 RUN sed -i "s/REPLACE_WITH_API_KEY_ACCOUNT/$API_KEY_ACCOUNT/g" /tmp/config_production.yml
 RUN sed -i "s/REPLACE_WITH_API_KEY_FINANCE/$API_KEY_FINANCE/g" /tmp/config_production.yml
+RUN sed -i "s/REPLACE_WITH_API_KEY_PAGE/$API_KEY_PAGE/g" /tmp/config_production.yml
 
 
 RUN #chown -R kong:kong /tmp

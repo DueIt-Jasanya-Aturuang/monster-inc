@@ -6,9 +6,10 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-        API_KEY_AUTH: your_auth_key
-        API_KEY_ACCOUNT: your_account_key
-        API_KEY_FINANCE: your_finance_key
+        API_KEY_AUTH: apikeyauth
+        API_KEY_ACCOUNT: apikeyaccount
+        API_KEY_FINANCE: apikeyfinance
+        API_KEY_PAGE: apikeypage
     network_mode: host
 #    ports:
 #      - '8000:8000'

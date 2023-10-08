@@ -36,6 +36,7 @@ jobs:
             API_KEY_AUTH=${{ secrets.API_KEY_AUTH }}
             API_KEY_ACCOUNT=${{ secrets.API_KEY_ACCOUNT }}
             API_KEY_FINANCE=${{ secrets.API_KEY_FINANCE }}
+            API_KEY_PAGE=${{ secrets.API_KEY_PAGE }}
 
       - name: deploy to hosting ssh main branch
         uses: appleboy/ssh-action@master

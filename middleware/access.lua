@@ -139,7 +139,10 @@ function _Access.run(conf)
         end
     end
 
+    ngx.log(ngx.ERR, "masuk satu")
     ngx.req.set_header("X-Api-Key", _Access.conf.key)
+
+    ngx.log(ngx.ERR, "masuk dua")
     -- ngx.req.clear_header(_Access.conf.token_header)
 end
 

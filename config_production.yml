@@ -207,6 +207,7 @@ services:
             - App-ID
             - User-ID
             - Type
+            - X-Api-Key
           max_age: 3600
       - name: middleware
         config:

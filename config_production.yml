@@ -118,6 +118,7 @@ services:
             - User-ID
             - X-Key
             - X-Api-Key
+            - Activasi
             - Type
             # tambahkan header lain yang perlu Anda izinkan
           exposed_headers:
@@ -199,6 +200,7 @@ services:
             - User-ID
             - X-Key
             - X-Api-Key
+            - Activasi
             - Type
             # tambahkan header lain yang perlu Anda izinkan
           exposed_headers:
@@ -346,6 +348,7 @@ services:
             - User-ID
             - X-Key
             - X-Api-Key
+            - Activasi
             - Type
             # tambahkan header lain yang perlu Anda izinkan
           exposed_headers:

@@ -43,16 +43,21 @@ services:
             - POST
             - PUT
             - DELETE
+            - OPTIONS
           headers:
+            - Accept
             - Content-Type
             - Authorization
             - App-ID
             - User-ID
+            - X-Key
+            - Type
             # tambahkan header lain yang perlu Anda izinkan
           exposed_headers:
             - Authorization
             - App-ID
             - User-ID
+            - Type
       - name: middleware
         config:
           auth: false
@@ -93,6 +98,30 @@ services:
         methods: [ 'POST' ]
         protocols: [ 'http', 'https' ]
     plugins:
+      - name: cors
+        config:
+          origins:
+            - "http://localhost:3000" # Ganti dengan domain yang diperbolehkan
+          methods:
+            - GET
+            - POST
+            - PUT
+            - DELETE
+            - OPTIONS
+          headers:
+            - Accept
+            - Content-Type
+            - Authorization
+            - App-ID
+            - User-ID
+            - X-Key
+            - Type
+            # tambahkan header lain yang perlu Anda izinkan
+          exposed_headers:
+            - Authorization
+            - App-ID
+            - User-ID
+            - Type
       - name: middleware
         config:
           auth: true
@@ -149,6 +178,30 @@ services:
         methods: [ 'DELETE' ]
         protocols: [ 'http', 'https' ]
     plugins:
+      - name: cors
+        config:
+          origins:
+            - "http://localhost:3000" # Ganti dengan domain yang diperbolehkan
+          methods:
+            - GET
+            - POST
+            - PUT
+            - DELETE
+            - OPTIONS
+          headers:
+            - Accept
+            - Content-Type
+            - Authorization
+            - App-ID
+            - User-ID
+            - X-Key
+            - Type
+            # tambahkan header lain yang perlu Anda izinkan
+          exposed_headers:
+            - Authorization
+            - App-ID
+            - User-ID
+            - Type
       - name: middleware
         config:
           auth: true
@@ -271,6 +324,30 @@ services:
         methods: [ 'GET' ]
 
     plugins:
+      - name: cors
+        config:
+          origins:
+            - "http://localhost:3000" # Ganti dengan domain yang diperbolehkan
+          methods:
+            - GET
+            - POST
+            - PUT
+            - DELETE
+            - OPTIONS
+          headers:
+            - Accept
+            - Content-Type
+            - Authorization
+            - App-ID
+            - User-ID
+            - X-Key
+            - Type
+            # tambahkan header lain yang perlu Anda izinkan
+          exposed_headers:
+            - Authorization
+            - App-ID
+            - User-ID
+            - Type
       - name: middleware
         config:
           auth: true
@@ -288,6 +365,30 @@ services:
         methods: [ 'POST' ]
         protocols: [ 'http', 'https' ]
     plugins:
+      - name: cors
+        config:
+          origins:
+            - "http://localhost:3000" # Ganti dengan domain yang diperbolehkan
+          methods:
+            - GET
+            - POST
+            - PUT
+            - DELETE
+            - OPTIONS
+          headers:
+            - Accept
+            - Content-Type
+            - Authorization
+            - App-ID
+            - User-ID
+            - X-Key
+            - Type
+            # tambahkaheader lain yang perlu Anda izinkan
+          exposed_headers:
+            - Authorization
+            - App-ID
+            - User-ID
+            - Type
       - name: middleware
         config:
           auth: true

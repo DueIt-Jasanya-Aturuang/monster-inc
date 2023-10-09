@@ -95,6 +95,7 @@ end
 
 function _Access.otorisasi(token, appId, userId, otorisasiActivitedAccountCondition, conf)
     if conf.auth then
+        ngx.log(ngx.ERR, "auth otorisasi")
         local res = _Access.otorisasi_auth(token, appId, userId, otorisasiActivitedAccountCondition)
         if not res or res.status ~= 200 then
             return res
@@ -102,6 +103,7 @@ function _Access.otorisasi(token, appId, userId, otorisasiActivitedAccountCondit
     end
 
     if conf.account then
+        ngx.log(ngx.ERR, "account otorisasi")
         local res = _Access.otorisasi_account(userId)
         if not res or res.status ~= 200 then
             return res
@@ -117,20 +119,27 @@ function _Access.run(conf)
         _Access.error_response("invalid key", "05", "FORBIDDEN", ngx.null, 403)
     end
 
+    ngx.log(ngx.ERR, "masuk satu")
     local token = ngx.req.get_headers()["Authorization"]
     local appId = ngx.req.get_headers()["App-ID"]
     local userId = ngx.req.get_headers()["User-ID"]
 
+    ngx.log(ngx.ERR, "masuk dua")
     local activited = _Access.getActvitedHeader(ngx.var.request_uri)
 
+    ngx.log(ngx.ERR, "masuk tiga")
     local res = _Access.otorisasi(token, appId, userId, activited, _Access.conf)
 
+    ngx.log(ngx.ERR, "masuk empat")
     if res ~= ngx.null then
+        ngx.log(ngx.ERR, "masuk lima")
         if not res then
             _Access.error_response(kongError, "99", "internal server error", ngx.null, ngx.HTTP_INTERNAL_SERVER_ERROR)
         end
 
+        ngx.log(ngx.ERR, "masuk enam")
         if res.status ~= 200 then
+            ngx.log(ngx.ERR, "masuk tuju")
             ngx.header["Content-Type"] = "application/json"
 
             ngx.status = res.status
@@ -139,10 +148,10 @@ function _Access.run(conf)
         end
     end
 
-    ngx.log(ngx.ERR, "masuk satu")
+    ngx.log(ngx.ERR, "masuk delapan")
     ngx.req.set_header("X-Api-Key", _Access.conf.key)
 
-    ngx.log(ngx.ERR, "masuk dua")
+    ngx.log(ngx.ERR, "masuk sembilan")
     -- ngx.req.clear_header(_Access.conf.token_header)
 end
 

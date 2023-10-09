@@ -43,7 +43,6 @@ services:
             - POST
             - PUT
             - DELETE
-            - OPTIONS
           headers:
             - Accept
             - Content-Type
@@ -60,6 +59,7 @@ services:
             - App-ID
             - User-ID
             - Type
+          max_age: 3600
       - name: middleware
         config:
           auth: false
@@ -109,7 +109,6 @@ services:
             - POST
             - PUT
             - DELETE
-            - OPTIONS
           headers:
             - Accept
             - Content-Type
@@ -126,6 +125,7 @@ services:
             - App-ID
             - User-ID
             - Type
+          max_age: 3600
       - name: middleware
         config:
           auth: true
@@ -191,7 +191,6 @@ services:
             - POST
             - PUT
             - DELETE
-            - OPTIONS
           headers:
             - Accept
             - Content-Type
@@ -208,6 +207,7 @@ services:
             - App-ID
             - User-ID
             - Type
+          max_age: 3600
       - name: middleware
         config:
           auth: true
@@ -339,7 +339,6 @@ services:
             - POST
             - PUT
             - DELETE
-            - OPTIONS
           headers:
             - Accept
             - Content-Type
@@ -356,6 +355,7 @@ services:
             - App-ID
             - User-ID
             - Type
+          max_age: 3600
       - name: middleware
         config:
           auth: true
@@ -382,7 +382,6 @@ services:
             - POST
             - PUT
             - DELETE
-            - OPTIONS
           headers:
             - Accept
             - Content-Type
@@ -397,6 +396,7 @@ services:
             - App-ID
             - User-ID
             - Type
+          max_age: 3600
       - name: middleware
         config:
           auth: true

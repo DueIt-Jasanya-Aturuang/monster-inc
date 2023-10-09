@@ -114,9 +114,17 @@ function _Access.otorisasi(token, appId, userId, otorisasiActivitedAccountCondit
 end
 
 function _Access.run(conf)
+    ngx.log(ngx.ERR, "masuk satu atas")
     _Access.conf = conf
+    ngx.log(ngx.ERR, "masuk satu atas dua")
+    ngx.log(ngx.ERR, ngx.req.get_headers()["X-Key"])
+    ngx.log(ngx.ERR, "masuk satu atas dua bawah x key")
     if keyKong ~= ngx.req.get_headers()["X-Key"] then
+        ngx.log(ngx.ERR, "masuk satu atas empat ")
+        ngx.log(ngx.ERR, ngx.req.get_headers()["X-Key"])
+        ngx.log(ngx.ERR, "masuk satu atas lima")
         _Access.error_response("invalid key", "05", "FORBIDDEN", ngx.null, 403)
+        ngx.log(ngx.ERR, "masuk satu atas enam")
     end
 
     ngx.log(ngx.ERR, "masuk satu")

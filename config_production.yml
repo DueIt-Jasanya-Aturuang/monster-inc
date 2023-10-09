@@ -51,6 +51,7 @@ services:
             - App-ID
             - User-ID
             - X-Key
+            - X-Api-Key
             - Type
             # tambahkan header lain yang perlu Anda izinkan
           exposed_headers:
@@ -115,6 +116,7 @@ services:
             - App-ID
             - User-ID
             - X-Key
+            - X-Api-Key
             - Type
             # tambahkan header lain yang perlu Anda izinkan
           exposed_headers:
@@ -195,6 +197,7 @@ services:
             - App-ID
             - User-ID
             - X-Key
+            - X-Api-Key
             - Type
             # tambahkan header lain yang perlu Anda izinkan
           exposed_headers:
@@ -341,6 +344,7 @@ services:
             - App-ID
             - User-ID
             - X-Key
+            - X-Api-Key
             - Type
             # tambahkan header lain yang perlu Anda izinkan
           exposed_headers:

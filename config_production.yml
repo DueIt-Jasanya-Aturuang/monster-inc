@@ -26,7 +26,7 @@ plugins:
       max_age: 3600
       preflight_continue: false
 services:
-  - name: auth-service-without otorisasi
+  - name: auth-service-without-otorisasi
     url: https://auth.jasanya.tech
     routes:
       - name: cors-preflight

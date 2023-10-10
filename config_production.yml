@@ -1,8 +1,37 @@
 _format_version: '1.1'
+plugins:
+  - name: cors
+    config:
+      origins:
+        - http://localhost:3000
+      methods:
+        - GET
+        - POST
+        - PUT
+        - DELETE
+      headers:
+        - Accept
+        - Content-Type
+        - Authorization
+        - App-ID
+        - User-ID
+        - X-Key
+        - Type
+        # tambahkan header lain yang perlu Anda izinkan
+      exposed_headers:
+        - Authorization
+        - App-ID
+        - User-ID
+        - Type
+      max_age: 3600
+      preflight_continue: false
 services:
-  # auth service without autorization
-  - url: https://auth.jasanya.tech
+  - name: auth-service-without otorisasi
+    url: https://auth.jasanya.tech
     routes:
+      - name: cors-preflight
+        methods:
+          - OPTIONS
       - name: login
         paths: [ '/auth/login' ]
         strip_path: false
@@ -34,33 +63,6 @@ services:
         methods: [ 'POST' ]
         protocols: [ 'http', 'https' ]
     plugins:
-      - name: cors
-        config:
-          origins:
-            - "http://localhost:3000" # Ganti dengan domain yang diperbolehkan
-          methods:
-            - GET
-            - POST
-            - PUT
-            - DELETE
-          headers:
-            - Accept
-            - Content-Type
-            - Authorization
-            - App-ID
-            - User-ID
-            - X-Key
-            - X-Api-Key
-            - Activasi
-            - Type
-            # tambahkan header lain yang perlu Anda izinkan
-          exposed_headers:
-            - Authorization
-            - App-ID
-            - User-ID
-            - Type
-            - X-Api-Key
-          max_age: 3600
       - name: middleware
         config:
           auth: false
@@ -68,9 +70,12 @@ services:
           apiKeyAuth_header: REPLACE_WITH_API_KEY_AUTH
           key: REPLACE_WITH_API_KEY_AUTH
 
-  # auth service with autorization
-  - url: https://auth.jasanya.tech
+  - name: auth-service-with-otorisasi
+    url: https://auth.jasanya.tech
     routes:
+      - name: cors-preflight
+        methods:
+          - OPTIONS
       # get-account
       - name: get-user
         paths: [ '/auth/user' ]
@@ -101,32 +106,6 @@ services:
         methods: [ 'POST' ]
         protocols: [ 'http', 'https' ]
     plugins:
-      - name: cors
-        config:
-          origins:
-            - "http://localhost:3000" # Ganti dengan domain yang diperbolehkan
-          methods:
-            - GET
-            - POST
-            - PUT
-            - DELETE
-          headers:
-            - Accept
-            - Content-Type
-            - Authorization
-            - App-ID
-            - User-ID
-            - X-Key
-            - X-Api-Key
-            - Activasi
-            - Type
-            # tambahkan header lain yang perlu Anda izinkan
-          exposed_headers:
-            - Authorization
-            - App-ID
-            - User-ID
-            - Type
-          max_age: 3600
       - name: middleware
         config:
           auth: true
@@ -134,9 +113,12 @@ services:
           apiKeyAuth_header: REPLACE_WITH_API_KEY_AUTH
           key: REPLACE_WITH_API_KEY_AUTH
 
-# account service
-  - url: https://account.dueit.my.id
+  - name: account-service-with-otorisasi
+    url: https://account.dueit.my.id
     routes:
+      - name: cors-preflight
+        methods:
+          - OPTIONS
       - name: get-profile
         paths: [ '/account/profile' ]
         strip_path: false
@@ -183,33 +165,6 @@ services:
         methods: [ 'DELETE' ]
         protocols: [ 'http', 'https' ]
     plugins:
-      - name: cors
-        config:
-          origins:
-            - "http://localhost:3000" # Ganti dengan domain yang diperbolehkan
-          methods:
-            - GET
-            - POST
-            - PUT
-            - DELETE
-          headers:
-            - Accept
-            - Content-Type
-            - Authorization
-            - App-ID
-            - User-ID
-            - X-Key
-            - X-Api-Key
-            - Activasi
-            - Type
-            # tambahkan header lain yang perlu Anda izinkan
-          exposed_headers:
-            - Authorization
-            - App-ID
-            - User-ID
-            - Type
-            - X-Api-Key
-          max_age: 3600
       - name: middleware
         config:
           auth: true
@@ -218,9 +173,12 @@ services:
           apiKeyAccount_header: REPLACE_WITH_API_KEY_ACCOUNT
           key: REPLACE_WITH_API_KEY_ACCOUNT
 
-  #    finance service
-  - url: https://finance.dueit.my.id
+  - name: finance-service-with-otorisasi
+    url: https://finance.dueit.my.id
     routes:
+      - name: cors-preflight
+        methods:
+          - OPTIONS
       - name: payment
         paths: [ '/finance/payment' ]
         strip_path: false
@@ -330,34 +288,7 @@ services:
         paths: [ '/finance/balance' ]
         strip_path: false
         methods: [ 'GET' ]
-
     plugins:
-      - name: cors
-        config:
-          origins:
-            - "http://localhost:3000" # Ganti dengan domain yang diperbolehkan
-          methods:
-            - GET
-            - POST
-            - PUT
-            - DELETE
-          headers:
-            - Accept
-            - Content-Type
-            - Authorization
-            - App-ID
-            - User-ID
-            - X-Key
-            - X-Api-Key
-            - Activasi
-            - Type
-            # tambahkan header lain yang perlu Anda izinkan
-          exposed_headers:
-            - Authorization
-            - App-ID
-            - User-ID
-            - Type
-          max_age: 3600
       - name: middleware
         config:
           auth: true
@@ -367,38 +298,18 @@ services:
           apiKeyFinance_header: REPLACE_WITH_API_KEY_FINANCE
           key: REPLACE_WITH_API_KEY_FINANCE
 
-  - url: https://gql.dueit.my.id
+  - name: gql-service-with-otorisasi
+    url: https://gql.dueit.my.id
     routes:
+      - name: cors-preflight
+        methods:
+          - OPTIONS
       - name: graphql
         paths: [ '/gql' ]
         strip_path: false
         methods: [ 'POST' ]
         protocols: [ 'http', 'https' ]
     plugins:
-      - name: cors
-        config:
-          origins:
-            - "http://localhost:3000" # Ganti dengan domain yang diperbolehkan
-          methods:
-            - GET
-            - POST
-            - PUT
-            - DELETE
-          headers:
-            - Accept
-            - Content-Type
-            - Authorization
-            - App-ID
-            - User-ID
-            - X-Key
-            - Type
-            # tambahkaheader lain yang perlu Anda izinkan
-          exposed_headers:
-            - Authorization
-            - App-ID
-            - User-ID
-            - Type
-          max_age: 3600
       - name: middleware
         config:
           auth: true
